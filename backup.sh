@@ -178,11 +178,11 @@ array-sum () {
 
 # Thinning delete method
 delete-thinning () {
-  # sub-hourly, hourly, daily, weekly is everything else
-  local BLOCK_SIZES=(16 24 30)
+  # hourly, daily, weekly is everything else
+  local BLOCK_SIZES=(24 30)
   # First block is unconditional
   # The next blocks will only accept files whose names cause these functions to return true (0)
-  local BLOCK_FUNCTIONS=("is-hourly-backup" "is-daily-backup" "is-weekly-backup")
+  local BLOCK_FUNCTIONS=("is-daily-backup" "is-weekly-backup")
 
   # Warn if $MAX_BACKUPS does not have enough room for all the blocks
   TOTAL_BLOCK_SIZE=$(array-sum ${BLOCK_SIZES[@]})
